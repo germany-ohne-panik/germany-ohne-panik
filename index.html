@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Германия без паники — Владислав Ковальков</title>
+<style>
+  :root{
+    --paper:#F6F4EF;
+    --ink:#1F2A24;
+    --forest:#28433A;
+    --clay:#C4633F;
+    --line:#D8D2C4;
+    --muted:#6B6F66;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter", system-ui, sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:"Source Serif Pro", Georgia, serif;
+    margin:0;
+    color:var(--forest);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 28px;}
+
+  /* Stamp signature mark */
+  .stamp{
+    width:46px; height:46px;
+    border:2px solid var(--clay);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Source Serif Pro", serif;
+    font-weight:700; font-size:13px; color:var(--clay);
+    flex-shrink:0;
+    transform:rotate(-6deg);
+  }
+
+  header{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.2;}
+  .brand-text strong{font-family:"Source Serif Pro", serif; font-size:17px; color:var(--forest);}
+  .brand-text span{font-size:12px; color:var(--muted); letter-spacing:.03em;}
+  nav{display:flex; gap:26px; font-size:14px;}
+  nav a{color:var(--muted); border-bottom:1px solid transparent; padding-bottom:3px; transition:.2s;}
+  nav a:hover{color:var(--forest); border-color:var(--clay);}
+
+  .hero{padding:90px 0 70px;}
+  .eyebrow{
+    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--clay); font-weight:600; margin-bottom:16px; display:block;
+  }
+  .hero h1{font-size:44px; line-height:1.15; max-width:680px;}
+  .hero p.lead{
+    font-size:18px; color:var(--muted); max-width:560px; margin-top:22px;
+  }
+  .hero-actions{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:13px 26px; border-radius:3px;
+    font-size:14px; font-weight:600; letter-spacing:.01em;
+    transition:.2s;
+  }
+  .btn-primary{background:var(--forest); color:var(--paper);}
+  .btn-primary:hover{background:#1c322b;}
+  .btn-ghost{border:1px solid var(--line); color:var(--forest);}
+  .btn-ghost:hover{border-color:var(--clay); color:var(--clay);}
+
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:38px; max-width:600px;}
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:28px;}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:160px 1fr; gap:36px; align-items:start;}
+  .about-grid .stamp{width:140px; height:140px; font-size:15px; border-width:3px;}
+  .about-grid p{margin:0 0 14px; max-width:560px;}
+  .about-grid p:last-child{margin-bottom:0;}
+
+  /* Topics list (channel-style) */
+  .topics{list-style:none; margin:0; padding:0; display:grid; gap:0;}
+  .topics li{
+    display:flex; align-items:baseline; gap:18px;
+    padding:18px 0; border-top:1px solid var(--line);
+    font-size:16px;
+  }
+  .topics li:first-child{border-top:none;}
+  .topics li .num{font-family:"Source Serif Pro",serif; color:var(--clay); font-size:14px; width:24px;}
+  .topics li .label{color:var(--forest); font-weight:600; min-width:170px;}
+  .topics li .desc{color:var(--muted); font-size:15px;}
+
+  /* Auto flagship */
+  .flagship{
+    background:var(--forest); color:var(--paper);
+    border-radius:4px; padding:44px;
+    display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center;
+  }
+  .flagship h3{color:var(--paper); font-size:26px; margin-bottom:12px;}
+  .flagship p{color:#CFE0D7; margin:0; max-width:480px; font-size:15px;}
+  .flagship .btn-primary{background:var(--clay); color:var(--paper);}
+  .flagship .btn-primary:hover{background:#a8512f;}
+  .credentials{
+    display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
+  }
+  .credentials div{font-size:13px; color:#CFE0D7;}
+  .credentials strong{display:block; font-family:"Source Serif Pro",serif; font-size:22px; color:var(--paper);}
+
+  /* Pricing */
+  .price-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .price-card{
+    background:#fff; border:1px solid var(--line); border-radius:4px;
+    padding:26px; display:flex; flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--clay); box-shadow:0 0 0 1px var(--clay);}
+  .price-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .price-code{font-size:12px; letter-spacing:.06em; color:var(--clay); font-weight:700;}
+  .price-amount{font-family:"Source Serif Pro",serif; font-size:24px; color:var(--forest);}
+  .price-card h4{font-family:"Source Serif Pro",serif; font-size:17px; color:var(--forest); margin:0 0 8px; line-height:1.3;}
+  .price-card .price-value{font-size:12.5px; color:var(--clay); font-style:italic; margin:0 0 14px; line-height:1.4;}
+  .price-card ul{margin:0 0 20px; padding-left:18px; font-size:13.5px; color:var(--muted); flex-grow:1;}
+  .price-card ul li{margin-bottom:7px;}
+  .price-card .btn{text-align:center; font-size:13px;}
+
+  /* Legal sections */
+  .legal-text{max-width:680px; font-size:13.5px; color:var(--muted); columns:1;}
+  .legal-text h5{
+    font-family:"Source Serif Pro",serif; color:var(--forest);
+    font-size:14px; margin:22px 0 6px; font-weight:600;
+  }
+  .legal-text h5:first-child{margin-top:0;}
+  .legal-text p{margin:0 0 4px;}
+  .legal-text a{color:var(--forest); border-bottom:1px solid var(--line);}
+
+  /* Channel callout */
+  .channel{
+    display:flex; align-items:center; gap:28px;
+    background:#fff; border:1px solid var(--line); border-radius:4px;
+    padding:30px;
+  }
+  .channel .stamp{border-color:var(--forest); color:var(--forest);}
+  .channel h3{font-size:19px; margin-bottom:6px;}
+  .channel p{margin:0; color:var(--muted); font-size:14px;}
+  .channel .meta{font-size:13px; color:var(--clay); font-weight:600; margin-top:8px; display:block;}
+
+  /* Testimonial */
+  blockquote{
+    font-family:"Source Serif Pro", serif;
+    font-size:20px; color:var(--forest); font-style:italic;
+    border-left:3px solid var(--clay); padding-left:24px; margin:0;
+  }
+  blockquote cite{display:block; font-style:normal; font-size:13px; color:var(--muted); margin-top:14px;}
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  .contact-grid h2{font-size:26px; margin-bottom:14px;}
+  .contact-grid p{color:var(--muted); max-width:380px;}
+  .contact-list{margin-top:22px; font-size:14px;}
+  .contact-list a{color:var(--forest); border-bottom:1px solid var(--line);}
+  form{display:flex; flex-direction:column; gap:14px;}
+  input, textarea{
+    border:1px solid var(--line); background:#fff;
+    padding:13px 14px; font-family:inherit; font-size:14px; border-radius:3px; color:var(--ink);
+  }
+  textarea{resize:vertical; min-height:100px;}
+  input:focus, textarea:focus{outline:2px solid var(--clay); outline-offset:1px;}
+
+  footer{padding:34px 0; font-size:13px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  footer a{color:var(--muted); margin-right:16px;}
+  footer a.legal-link{
+    font-size:11px; border:1px solid var(--line); border-radius:3px;
+    padding:4px 10px; margin-left:8px; margin-right:0;
+  }
+  footer a.legal-link:hover{border-color:var(--clay); color:var(--clay);}
+  footer a:hover{color:var(--clay);}
+
+  @media (max-width:720px){
+    .hero h1{font-size:32px;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-grid .stamp{width:80px;height:80px;font-size:11px;}
+    .flagship{grid-template-columns:1fr; text-align:left;}
+    .contact-grid{grid-template-columns:1fr;}
+    nav{display:none;}
+    .topics li{flex-direction:column; gap:4px;}
+    .price-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="stamp">DE</div>
+      <div class="brand-text">
+        <strong>Германия без паники</strong>
+        <span>Владислав Ковальков</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#topics">Темы</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#channel">YouTube</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Жизнь в Германии — по шагам, без паники</span>
+    <h1>Германия — это разрешимо. Разберёмся вместе.</h1>
+    <p class="lead">Пособия, жильё, школа, медицина, работа и автомобиль — через всё это я прошёл сам, как поздний переселенец. Теперь помогаю другим пройти быстрее и спокойнее.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Записаться на консультацию</a>
+      <a class="btn btn-ghost" href="#channel">Смотреть канал на YouTube</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="stamp">ОБО МНЕ</div>
+    <div>
+      <h2 style="margin-bottom:16px; font-size:26px;">Поздний переселенец, который теперь сам объясняет правила игры</h2>
+      <p>Я сам прошёл путь переезда в Германию — без гарантированной работы, с дипломом, который никто не ждал, и горой бюрократии впереди. Веду YouTube-канал «Германия без паники», где простыми словами рассказываю о пособиях, жильё, школе, медицине и работе.</p>
+      <p>Отдельная тема — автомобили. Много лет я работал продавцом у крупнейшего официального дилера <strong>Audi, VW и Toyota в регионе Oberfranken, Бавария</strong>, и знаю автокредитование и лизинг изнутри: на что реально смотрят дилеры, где можно сэкономить, какие условия выгодны. Сегодня я не продавец — я консультант на стороне покупателя.</p>
+    </div>
+  </div>
+</section>
+
+<section id="topics">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">С чем помогаю</span>
+      <h2>Те же темы, что и на канале — только лично для вас</h2>
+    </div>
+    <ul class="topics">
+      <li><span class="num">01</span><span class="label">Пособия и льготы</span><span class="desc">Kindergeld, Kinderzuschlag и другие выплаты — что положено и как оформить</span></li>
+      <li><span class="num">02</span><span class="label">Детсад и школа</span><span class="desc">Как устроить ребёнка, какие документы нужны</span></li>
+      <li><span class="num">03</span><span class="label">Жильё</span><span class="desc">Поиск, аренда, типичные подводные камни</span></li>
+      <li><span class="num">04</span><span class="label">Работа</span><span class="desc">Резюме, Anschreiben, поиск вакансий</span></li>
+      <li><span class="num">05</span><span class="label">Медицина и страховка</span><span class="desc">Как устроена система страхования</span></li>
+      <li><span class="num">06</span><span class="label">Бизнес-старт</span><span class="desc">Gewerbe, Kleinunternehmer, UG/GmbH — ориентиры и чек-листы</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="auto">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Флагманская услуга</span>
+      <h2>Автомобиль в Германии — моя основная экспертиза</h2>
+    </div>
+    <div class="flagship">
+      <div>
+        <h3>Покупка авто глазами бывшего продавца дилера</h3>
+        <p>Подбор, проверка, переговоры с продавцом, кредит или лизинг, оформление — я веду сделку на стороне покупателя, без интереса продать конкретную машину или банк.</p>
+        <div class="credentials">
+          <div><strong>10+ лет</strong>в автобизнесе Германии</div>
+          <div><strong>Audi · VW · Toyota</strong>опыт у крупнейшего дилера в Oberfranken</div>
+          <div><strong>5 пакетов</strong>от консультации до полного сопровождения</div>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="#pricing">Смотреть тарифы</a>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Прайс и форматы</span>
+      <h2>Пять пакетов — от консультации до полного сопровождения</h2>
+    </div>
+    <p style="color:var(--muted); max-width:620px; margin-top:-18px; margin-bottom:34px; font-size:15px;">Автоподбор, кредитование, экспорт. Прозрачно, законно, с фокусом на результат.</p>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="price-top">
+          <span class="price-code">VK-01</span>
+          <span class="price-amount">50 €</span>
+        </div>
+        <h4>Экспертная консультация</h4>
+        <p class="price-value">Конкретный ответ от человека, который сам работал у дилера — без воды и без догадок.</p>
+        <ul>
+          <li>Звонок / WhatsApp / Zoom (RU/DE)</li>
+          <li>Кредитование, покупка/экспорт, eVB/Zulassung, интеграция, открытие фирмы</li>
+          <li>Оплата: 100% предоплата</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/4915117888188?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20VK-01%20(%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F,%2050%E2%82%AC).">Написать в WhatsApp</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-top">
+          <span class="price-code">VK-02</span>
+          <span class="price-amount">200 €</span>
+        </div>
+        <h4>Торг и переговоры с продавцом</h4>
+        <p class="price-value">Веду переговоры лично — профессиональный торг часто окупает стоимость пакета за один разговор.</p>
+        <ul>
+          <li>Совместный звонок: уточнения / торг / бронь</li>
+          <li>До 60 мин, далее +50 €/30 мин</li>
+          <li>Сорвалось по вине продавца — перенос или 100% возврат</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/4915117888188?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20VK-02%20(%D0%9F%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B,%20200%E2%82%AC).">Написать в WhatsApp</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-top">
+          <span class="price-code">VK-03</span>
+          <span class="price-amount">400 €</span>
+        </div>
+        <h4>Полное сопровождение — под ключ</h4>
+        <p class="price-value">Беру всю сделку на себя: от подбора и проверки до договора и регистрации.</p>
+        <ul>
+          <li>3–5 вариантов, включая базу официальных дилеров</li>
+          <li>VIN/документы, торг, договор, оплата</li>
+          <li>eVB/Zulassung, осмотр в Байройте по договорённости</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/4915117888188?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20VK-03%20(%D0%A1%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5,%20400%E2%82%AC).">Написать в WhatsApp</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-top">
+          <span class="price-code">VK-04</span>
+          <span class="price-amount">700 €</span>
+        </div>
+        <h4>Автокредит под ключ: подбор + банк</h4>
+        <p class="price-value">Не просто подбор авто — работа с банками: минимум 2 предложения и проверка договора, чтобы не переплатить по кредиту.</p>
+        <ul>
+          <li>До 10 вариантов (2 итерации), HU/TÜV/история ДТП</li>
+          <li>Voranfrage, ≥2 банка, проверка договора</li>
+          <li>Осмотр лично/выезд до 50 км включён, далее 1,20 €/км</li>
+          <li>eVB, запись в Zulassungsstelle, регистрация</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/4915117888188?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20VK-04%20(%D0%9F%D0%BE%D0%B4%D0%B1%D0%BE%D1%80+%D0%BA%D1%80%D0%B5%D0%B4%D0%B8%D1%82,%20700%E2%82%AC).">Написать в WhatsApp</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-top">
+          <span class="price-code">VK-05</span>
+          <span class="price-amount">300 €</span>
+        </div>
+        <h4>Экспорт авто в ЕС</h4>
+        <p class="price-value">Покупаете машину на вывоз в другую страну ЕС? Беру на себя всё экспортное оформление.</p>
+        <ul>
+          <li>Оформление экспорта и документов</li>
+          <li>eVB на 15/30 дней, пакет в Zulassungsstelle</li>
+          <li>Полис, госпошлины и номера — отдельно</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://wa.me/4915117888188?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20VK-05%20(%D0%AD%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82,%20300%E2%82%AC).">Написать в WhatsApp</a>
+      </div>
+
+    </div>
+    <p style="color:var(--muted); font-size:13px; margin-top:28px;">Госпошлины, номера, страховка и банковские комиссии — отдельно. Действует Kleinunternehmer §19 UStG (НДС не начисляется). Keine Rechts- oder Steuerberatung i.S.d. RDG/StBerG.</p>
+  </div>
+</section>
+
+<section id="channel">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">YouTube</span>
+      <h2>Прежде чем писать — посмотрите канал</h2>
+    </div>
+    <div class="channel">
+      <div class="stamp">5K+</div>
+      <div>
+        <h3>Германия без паники</h3>
+        <p>Подробные видео о пособиях, переезде, автокредитовании и жизни в Германии — простыми словами, с личным опытом.</p>
+        <span class="meta">youtube.com/@vladislavkovalkov · 5000+ подписчиков</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <blockquote>
+      „Wir hatten super nette Verkaufsgespräche mit Herrn Kovalkov. Er war sehr bemüht uns jeden Sonderwunsch umzusetzen. Sehr sympathisch.“
+      <cite>— Markus Eurich, клиент по покупке авто</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:none;">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Напишите мне</h2>
+      <p>Расскажите коротко, с чем нужна помощь — отвечу лично в течение дня.</p>
+      <div class="contact-list">
+        <div>Email: <a href="mailto:vklconult@gmail.com">vklconult@gmail.com</a></div>
+        <div style="margin-top:8px;">WhatsApp: <a href="https://wa.me/4915117888188">+49 151 17888188</a></div>
+        <div style="margin-top:8px;">95445 Bayreuth, Deutschland</div>
+      </div>
+    </div>
+    <form onsubmit="return false;">
+      <input type="text" placeholder="Имя" required>
+      <input type="email" placeholder="Эл. почта" required>
+      <textarea placeholder="С чем нужна помощь?" required></textarea>
+      <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">Отправить</button>
+    </form>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap;">
+    <div>© 2026 Vladislav Kovalkov — Германия без паники</div>
+    <div>
+      <a href="https://youtube.com/@vladislavkovalkov">YouTube</a>
+      <a href="https://www.instagram.com/vladikov.de/">Instagram</a>
+      <a href="http://www.linkedin.com/in/vladislavkovalkov">LinkedIn</a>
+      <a href="https://t.me/VladislavKovalkovDE">Telegram</a>
+      <a href="legal.html#impressum" class="legal-link">Impressum</a>
+      <a href="legal.html#datenschutz" class="legal-link">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

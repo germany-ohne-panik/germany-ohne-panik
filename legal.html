@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum & Datenschutz — Vladislav Kovalkov</title>
+<style>
+  :root{
+    --paper:#F6F4EF;
+    --ink:#1F2A24;
+    --forest:#28433A;
+    --clay:#C4633F;
+    --line:#D8D2C4;
+    --muted:#6B6F66;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter", system-ui, sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:"Source Serif Pro", Georgia, serif;
+    margin:0;
+    color:var(--forest);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 28px;}
+
+  /* Stamp signature mark */
+  .stamp{
+    width:46px; height:46px;
+    border:2px solid var(--clay);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Source Serif Pro", serif;
+    font-weight:700; font-size:13px; color:var(--clay);
+    flex-shrink:0;
+    transform:rotate(-6deg);
+  }
+
+  header{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.2;}
+  .brand-text strong{font-family:"Source Serif Pro", serif; font-size:17px; color:var(--forest);}
+  .brand-text span{font-size:12px; color:var(--muted); letter-spacing:.03em;}
+  nav{display:flex; gap:26px; font-size:14px;}
+  nav a{color:var(--muted); border-bottom:1px solid transparent; padding-bottom:3px; transition:.2s;}
+  nav a:hover{color:var(--forest); border-color:var(--clay);}
+
+  .hero{padding:90px 0 70px;}
+  .eyebrow{
+    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--clay); font-weight:600; margin-bottom:16px; display:block;
+  }
+  .hero h1{font-size:44px; line-height:1.15; max-width:680px;}
+  .hero p.lead{
+    font-size:18px; color:var(--muted); max-width:560px; margin-top:22px;
+  }
+  .hero-actions{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:13px 26px; border-radius:3px;
+    font-size:14px; font-weight:600; letter-spacing:.01em;
+    transition:.2s;
+  }
+  .btn-primary{background:var(--forest); color:var(--paper);}
+  .btn-primary:hover{background:#1c322b;}
+  .btn-ghost{border:1px solid var(--line); color:var(--forest);}
+  .btn-ghost:hover{border-color:var(--clay); color:var(--clay);}
+
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:38px; max-width:600px;}
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:28px;}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:160px 1fr; gap:36px; align-items:start;}
+  .about-grid .stamp{width:140px; height:140px; font-size:15px; border-width:3px;}
+  .about-grid p{margin:0 0 14px; max-width:560px;}
+  .about-grid p:last-child{margin-bottom:0;}
+
+  /* Topics list (channel-style) */
+  .topics{list-style:none; margin:0; padding:0; display:grid; gap:0;}
+  .topics li{
+    display:flex; align-items:baseline; gap:18px;
+    padding:18px 0; border-top:1px solid var(--line);
+    font-size:16px;
+  }
+  .topics li:first-child{border-top:none;}
+  .topics li .num{font-family:"Source Serif Pro",serif; color:var(--clay); font-size:14px; width:24px;}
+  .topics li .label{color:var(--forest); font-weight:600; min-width:170px;}
+  .topics li .desc{color:var(--muted); font-size:15px;}
+
+  /* Auto flagship */
+  .flagship{
+    background:var(--forest); color:var(--paper);
+    border-radius:4px; padding:44px;
+    display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center;
+  }
+  .flagship h3{color:var(--paper); font-size:26px; margin-bottom:12px;}
+  .flagship p{color:#CFE0D7; margin:0; max-width:480px; font-size:15px;}
+  .flagship .btn-primary{background:var(--clay); color:var(--paper);}
+  .flagship .btn-primary:hover{background:#a8512f;}
+  .credentials{
+    display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;
+  }
+  .credentials div{font-size:13px; color:#CFE0D7;}
+  .credentials strong{display:block; font-family:"Source Serif Pro",serif; font-size:22px; color:var(--paper);}
+
+  /* Pricing */
+  .price-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .price-card{
+    background:#fff; border:1px solid var(--line); border-radius:4px;
+    padding:26px; display:flex; flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--clay); box-shadow:0 0 0 1px var(--clay);}
+  .price-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .price-code{font-size:12px; letter-spacing:.06em; color:var(--clay); font-weight:700;}
+  .price-amount{font-family:"Source Serif Pro",serif; font-size:24px; color:var(--forest);}
+  .price-card h4{font-family:"Source Serif Pro",serif; font-size:17px; color:var(--forest); margin:0 0 14px; line-height:1.3;}
+  .price-card ul{margin:0 0 20px; padding-left:18px; font-size:13.5px; color:var(--muted); flex-grow:1;}
+  .price-card ul li{margin-bottom:7px;}
+  .price-card .btn{text-align:center; font-size:13px;}
+
+  /* Legal sections */
+  .legal-text{max-width:680px; font-size:13.5px; color:var(--muted); columns:1;}
+  .legal-text h5{
+    font-family:"Source Serif Pro",serif; color:var(--forest);
+    font-size:14px; margin:22px 0 6px; font-weight:600;
+  }
+  .legal-text h5:first-child{margin-top:0;}
+  .legal-text p{margin:0 0 4px;}
+  .legal-text a{color:var(--forest); border-bottom:1px solid var(--line);}
+
+  /* Channel callout */
+  .channel{
+    display:flex; align-items:center; gap:28px;
+    background:#fff; border:1px solid var(--line); border-radius:4px;
+    padding:30px;
+  }
+  .channel .stamp{border-color:var(--forest); color:var(--forest);}
+  .channel h3{font-size:19px; margin-bottom:6px;}
+  .channel p{margin:0; color:var(--muted); font-size:14px;}
+  .channel .meta{font-size:13px; color:var(--clay); font-weight:600; margin-top:8px; display:block;}
+
+  /* Testimonial */
+  blockquote{
+    font-family:"Source Serif Pro", serif;
+    font-size:20px; color:var(--forest); font-style:italic;
+    border-left:3px solid var(--clay); padding-left:24px; margin:0;
+  }
+  blockquote cite{display:block; font-style:normal; font-size:13px; color:var(--muted); margin-top:14px;}
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  .contact-grid h2{font-size:26px; margin-bottom:14px;}
+  .contact-grid p{color:var(--muted); max-width:380px;}
+  .contact-list{margin-top:22px; font-size:14px;}
+  .contact-list a{color:var(--forest); border-bottom:1px solid var(--line);}
+  form{display:flex; flex-direction:column; gap:14px;}
+  input, textarea{
+    border:1px solid var(--line); background:#fff;
+    padding:13px 14px; font-family:inherit; font-size:14px; border-radius:3px; color:var(--ink);
+  }
+  textarea{resize:vertical; min-height:100px;}
+  input:focus, textarea:focus{outline:2px solid var(--clay); outline-offset:1px;}
+
+  footer{padding:34px 0; font-size:13px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  footer a{color:var(--muted); margin-right:16px;}
+  footer a:hover{color:var(--clay);}
+
+  @media (max-width:720px){
+    .hero h1{font-size:32px;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-grid .stamp{width:80px;height:80px;font-size:11px;}
+    .flagship{grid-template-columns:1fr; text-align:left;}
+    .contact-grid{grid-template-columns:1fr;}
+    nav{display:none;}
+    .topics li{flex-direction:column; gap:4px;}
+    .price-grid{grid-template-columns:1fr;}
+  }
+</style>
+<style>
+  .legal-nav{display:flex; gap:10px; margin-bottom:30px;}
+  .legal-tab{
+    padding:9px 18px; border:1px solid var(--line); border-radius:3px;
+    font-size:13px; font-weight:600; color:var(--muted); cursor:pointer;
+  }
+  .legal-tab.active{border-color:var(--clay); color:var(--clay);}
+  .legal-page{display:none;}
+  .legal-page.active{display:block;}
+  .back-link{font-size:13px; color:var(--muted); display:inline-block; margin-bottom:24px;}
+  .back-link:hover{color:var(--clay);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="stamp">DE</div>
+      <div class="brand-text">
+        <strong>Германия без паники</strong>
+        <span>Владислав Ковальков</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">На главную</a>
+    </nav>
+  </div>
+</header>
+
+<section style="border-bottom:none;">
+  <div class="wrap">
+    <a class="back-link" href="index.html">&larr; Назад на главную</a>
+    <div class="legal-nav">
+      <span class="legal-tab active" data-target="impressum" onclick="showLegal('impressum')">Impressum</span>
+      <span class="legal-tab" data-target="datenschutz" onclick="showLegal('datenschutz')">Datenschutz</span>
+    </div>
+
+    <div class="legal-page active" id="page-impressum">
+      <div class="section-head">
+        <span class="eyebrow">Anbieterkennzeichnung gemäß § 5 DDG</span>
+        <h2>Impressum</h2>
+      </div>
+      <div class="legal-text">
+        <p>Vladislav Kovalkov<br>Amfortasweg 3 B<br>95445 Bayreuth<br>Deutschland</p>
+
+        <h5>Kontakt</h5>
+        <p>Tel./WhatsApp: <a href="https://wa.me/4915117888188">+49 151 17888188</a><br>E-Mail: <a href="mailto:vklconult@gmail.com">vklconult@gmail.com</a></p>
+
+        <h5>Hinweis zur Umsatzsteuer</h5>
+        <p>Gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen.</p>
+
+        <h5>Angaben zur Tätigkeit</h5>
+        <p>Beratung in den Bereichen Integration in Deutschland, Autokauf/-finanzierung, Arbeitsmarkt und Existenzgründung.<br>Hinweis: Keine Rechts- oder Steuerberatung im Sinne des RDG/StBerG.</p>
+
+        <h5>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h5>
+        <p>Vladislav Kovalkov, Amfortasweg 3 B, 95445 Bayreuth, Deutschland.</p>
+
+        <h5>Haftung für Inhalte</h5>
+        <p>Die Inhalte dieser Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehme ich keine Gewähr. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen werden diese Inhalte umgehend entfernt.</p>
+
+        <h5>Haftung für Links</h5>
+        <p>Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte wird daher keine Gewähr übernommen. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige Inhalte waren zu diesem Zeitpunkt nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden derartige Links umgehend entfernt.</p>
+
+        <h5>Urheberrecht</h5>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+
+        <h5>Hinweis nach § 36 VSBG</h5>
+        <p>Ich bin weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      </div>
+    </div>
+
+    <div class="legal-page" id="page-datenschutz">
+      <div class="section-head">
+        <span class="eyebrow">DSGVO</span>
+        <h2>Datenschutzerklärung</h2>
+      </div>
+      <div class="legal-text">
+        <h5>1. Verantwortlicher</h5>
+        <p>Vladislav Kovalkov<br>Amfortasweg 3 B, 95445 Bayreuth, Deutschland<br>Tel./WhatsApp: +49 151 17888188<br>E-Mail: vklconult@gmail.com</p>
+
+        <h5>2. Hosting & technische Bereitstellung (Wix)</h5>
+        <p>Diese Website wird über Dienste der Wix.com Ltd. bereitgestellt. Dabei werden technisch erforderliche Daten (z. B. IP-Adresse, Zugriffszeit, User-Agent, aufgerufene Seiten) verarbeitet, um Sicherheit und Funktionsfähigkeit der Website zu gewährleisten. Wix kann Daten auch außerhalb der EU verarbeiten (u. a. Israel/USA) unter Einsatz geeigneter Garantien (z. B. EU-Standardvertragsklauseln).</p>
+
+        <h5>3. Arten der verarbeiteten Daten / Zwecke</h5>
+        <p>Nutzungsdaten/Logfiles: technische Bereitstellung, Sicherheit (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO).<br>
+        Kontaktanfragen (Formular/E-Mail): Bearbeitung Ihrer Anfrage, Kommunikation (Vertrag/Anbahnung, Art. 6 Abs. 1 lit. b; ggf. berechtigtes Interesse, lit. f).<br>
+        Termin-/Beratungsdaten: Vorbereitung und Durchführung von Beratungen (Art. 6 Abs. 1 lit. b).<br>
+        Marketing/Statistik (nur mit Einwilligung): optionale Analyse-/Marketing-Cookies, eingebettete Inhalte (Art. 6 Abs. 1 lit. a).</p>
+
+        <h5>4. Kontaktformular & E-Mail</h5>
+        <p>Bei Kontaktaufnahme per Formular oder E-Mail verarbeiten wir die von Ihnen mitgeteilten Daten (z. B. Name, E-Mail, Nachricht) ausschließlich zur Bearbeitung der Anfrage. Pflichtfelder sind entsprechend gekennzeichnet.</p>
+
+        <h5>5. Messenger-Dienste (WhatsApp / Telegram)</h5>
+        <p>Bei Kontaktaufnahme über WhatsApp oder Telegram werden personenbezogene Daten (z. B. Telefonnummer, Nachrichteninhalte, Metadaten) durch die jeweiligen Anbieter verarbeitet, ggf. auch außerhalb der EU. Rechtsgrundlage ist Ihre Anfrage/Kommunikation (Art. 6 Abs. 1 lit. b) bzw. Ihre Einwilligung (Art. 6 Abs. 1 lit. a). Bitte übermitteln Sie über Messenger keine besonders sensiblen Daten.</p>
+
+        <h5>6. Eingebettete Inhalte (YouTube / Instagram)</h5>
+        <p>Auf einzelnen Seiten können eingebettete Videos (YouTube) oder Feeds (Instagram) erscheinen. Beim Aufruf können Cookies/Tracker der Anbieter gesetzt und Nutzungsdaten erhoben werden. Die Einbindung erfolgt erst nach Ihrer Einwilligung über den Cookie-Banner (Art. 6 Abs. 1 lit. a). Ohne Einwilligung werden nur technisch notwendige Inhalte geladen.</p>
+
+        <h5>7. Cookies & Einwilligungs-Management</h5>
+        <p>Wir verwenden Cookies und ähnliche Technologien. Technisch notwendige Cookies sind für den Betrieb erforderlich (Art. 6 Abs. 1 lit. f). Analyse/Marketing-Cookies setzen wir nur mit Ihrer Einwilligung über den Cookie-Banner (Art. 6 Abs. 1 lit. a). Sie können Ihre Auswahl jederzeit über die Cookie-Einstellungen im Footer bzw. den Banner ändern. Im Banner finden Sie auch eine Liste der eingesetzten Cookies/Zwecke.</p>
+
+        <h5>8. Rechtsgrundlagen</h5>
+        <p>Art. 6 Abs. 1 lit. a (Einwilligung), lit. b (Vertrag/Anbahnung), lit. f (berechtigte Interessen – Betrieb/Sicherheit/Optimierung der Website).</p>
+
+        <h5>9. Empfänger / Kategorien von Empfängern</h5>
+        <p>IT-Dienstleister/Hosting (Wix und beauftragte Sub-Prozessoren), Kommunikationsdienste (E-Mail-/Messenger-Anbieter), eingebettete Dritt-Dienste (YouTube/Instagram), ggf. Analytik/Consent-Management.</p>
+
+        <h5>10. Drittlandübermittlungen</h5>
+        <p>Bei Nutzung von Wix/Dritt-Diensten kann es zu Übermittlungen in Drittländer (u. a. Israel/USA) kommen. Diese stützen wir – soweit erforderlich – auf EU-Standardvertragsklauseln und zusätzliche Schutzmaßnahmen.</p>
+
+        <h5>11. Speicherdauer</h5>
+        <p>Wir verarbeiten personenbezogene Daten nur solange, wie es für die jeweiligen Zwecke erforderlich ist bzw. gesetzliche Aufbewahrungspflichten bestehen. Danach werden Daten gelöscht oder anonymisiert.</p>
+
+        <h5>12. Rechte der betroffenen Personen</h5>
+        <p>Sie haben insbesondere das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Einwilligungen können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Zudem besteht ein Beschwerderecht bei einer Aufsichtsbehörde.</p>
+
+        <h5>13. Pflicht zur Bereitstellung</h5>
+        <p>Die Bereitstellung Ihrer Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Für bestimmte Funktionen (z. B. Beantwortung Ihrer Anfrage) sind einige Angaben erforderlich; ohne diese kann eine Bearbeitung ggf. nicht erfolgen.</p>
+
+        <h5>14. Sicherheit</h5>
+        <p>Wir treffen angemessene technische und organisatorische Maßnahmen, um personenbezogene Daten vor Verlust, Missbrauch und unbefugtem Zugriff zu schützen.</p>
+
+        <h5>15. Änderungen</h5>
+        <p>Wir können diese Datenschutzerklärung gelegentlich anpassen, um sie an geänderte Rechtslagen oder Dienste anzupassen.</p>
+
+        <p style="margin-top:24px; font-size:12px; color:var(--muted);">Stand: 01.09.2025</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap;">
+    <div>&copy; 2026 Vladislav Kovalkov — Германия без паники</div>
+    <div><a href="index.html">На главную</a></div>
+  </div>
+</footer>
+
+<script>
+function showLegal(target){
+  document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + target).classList.add('active');
+  document.querySelector('.legal-tab[data-target="' + target + '"]').classList.add('active');
+}
+// Open correct tab if URL has #datenschutz or #impressum
+const hash = window.location.hash.replace('#','');
+if(hash === 'datenschutz') showLegal('datenschutz');
+</script>
+
+</body>
+</html>
